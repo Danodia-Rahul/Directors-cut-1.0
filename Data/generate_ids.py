@@ -1,7 +1,7 @@
 import hashlib 
 import json
 
-with open('merged_output.json', 'r') as f_in:
+with open('raw_data.json', 'r') as f_in:
     documents = json.load(f_in)
 
 def generate_id(record):
