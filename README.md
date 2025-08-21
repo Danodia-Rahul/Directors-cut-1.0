@@ -12,7 +12,7 @@ Essential film making techniques, from shots to editing, all in one place.
 Project Root/
 ├── Data/
 │   ├── data.json
-│   ├── python.py
+│   ├── generate_ids.py
 │   └── raw_data.json
 ├── .gitignore
 └── README.md
