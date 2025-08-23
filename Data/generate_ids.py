@@ -15,5 +15,5 @@ for record in documents:
     processed_data.append(record)
 
 with open('Data/data.json', 'w') as f_out:
-    json.dump(processed_data, f_out, indent=2)
+    json.dump(processed_data, f_out, indent=2, ensure_ascii=False)
 
