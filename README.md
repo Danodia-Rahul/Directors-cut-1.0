@@ -9,11 +9,15 @@ Essential film making techniques, from shots to editing, all in one place.
 
 <h2>📁 Project Structure</h2>
 <pre>
-Project Root/
+Directors-cut-1.0/
 ├── Data/
 │   ├── data.json
 │   ├── generate_ids.py
 │   └── raw_data.json
+├── Evaluation/
+│   └── ground.truth.ipynb
 ├── .gitignore
 └── README.md
 </pre>
+
+├──, └──, │
