@@ -15,7 +15,8 @@ Directors-cut-1.0/
 │   ├── generate_ids.py
 │   └── raw_data.json
 ├── Evaluation/
-│   └── ground.truth.ipynb
+│   └── ground_truth.ipynb
+│   └── ground_truth.csv
 ├── .gitignore
 └── README.md
 </pre>
