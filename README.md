@@ -22,3 +22,53 @@ Directors-cut-1.0/
 </pre>
 
 ├──, └──, │
+
+
+### 🚀 Getting Started
+
+This guide provides two options for setting up and running this project.
+
+-----
+
+### 💻 Option A: Local Setup with Conda
+
+This is the recommended setup as the project was developed using **Conda**.
+
+1.  **Install Miniconda** from this link: [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
+
+2.  **Create and activate the environment:**
+
+    ```bash
+    conda env create -f environment.yml
+    conda activate project
+    ```
+
+3.  **Run the Streamlit app:**
+
+    ```bash
+    streamlit run app.py
+    ```
+
+-----
+
+### 🐳 Option B: Containerized Setup with Docker
+
+You can also use **Docker** for a self-contained environment.
+
+1.  **Build the Docker image:**
+
+    ```bash
+    docker build -t project .
+    ```
+
+2.  **Run the app in Docker:**
+
+    ```bash
+    docker run -p 8501:8501 project
+    ```
+
+3.  **Access the app** by navigating to:
+
+    ```
+    http://localhost:8501
+    ```
