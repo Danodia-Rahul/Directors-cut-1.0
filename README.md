@@ -41,7 +41,7 @@ The dataset used in this project was collected through **web scraping** from mul
 
 Since each source followed a different structure and formatting style, a single generic scraper could not be applied. Instead, custom scraping routines were written for each site to extract the relevant information.  
 
-> **Note:** The scraping code itself is not included in this repository. The primary reason is that the scripts were highly tailored to the unique HTML structures of the individual websites, and therefore are not reusable in a general form. Moreover, the focus of this project is on the analysis and application of the curated dataset, not on the scraping process itself.  
+**Note:** The scraping code itself is not included in this repository. The primary reason is that the scripts were highly tailored to the unique HTML structures of the individual websites, and therefore are not reusable in a general form. Moreover, the focus of this project is on the analysis and application of the curated dataset, not on the scraping process itself.  
 
 All data used here is strictly for **academic and research purposes**, and care was taken to respect the **terms of service** and copyright of the original websites.
                                         
@@ -109,7 +109,7 @@ You can also use **Docker** for a self-contained environment.
 ---
 ### Evaluation
 
-#### Retrieval evaluation
+#### Retrieval Evaluation
 ---
 For retrieval evaluation, we experimented with several approaches:
 
@@ -118,19 +118,19 @@ For retrieval evaluation, we experimented with several approaches:
 - **Multi-Stage Search:** Combines keyword and semantic search in multiple stages.  
 - **Re-Ranking Fusion (RRF) Search:** Combines multiple retrieval strategies and re-ranks the results.
 
-| Method               | MRR     | Hit Rate |
-|----------------------|--------|----------|
-| Keyword Search       | 0.7162 | 0.8347   |
-| Semantic Search      | 0.8449 | 0.9288   |
-| Multi-Stage Search   | 0.8013 | 0.9397   |
-| RRF Search           | 0.8638 | 0.9421   |
+        | Method               | MRR    | Hit Rate |
+        |----------------------|--------|----------|
+        | Keyword Search       | 0.7162 | 0.8347   |
+        | Semantic Search      | 0.8449 | 0.9288   |
+        | Multi-Stage Search   | 0.8013 | 0.9397   |
+        | RRF Search           | 0.8638 | 0.9421   |
 
 For our use case, we selected **RRF Search** as it achieved the highest recall (Hit Rate) and precision (MRR).
 
 #### RAG Evaluation
 ----
 
-For the retrieval-augmented generation (RAG) evaluation, we used a large language model (LLM) as the judge. Specifically, we tested the generated responses from two models: **Gemini 2.5 Flash Lite** and **Gemini 2.0 Flash Lite**.  
+For the retrieval-augmented generation (RAG) evaluation, we used a large language model (LLM) as the judge. Specifically, we tested the generated responses from two models: **Gemini 2.5 Flash** and **Gemini 2.5 Flash Lite**.  
 
-Due to daily rate limits, we evaluated a subset of **1,000 queries** from the [ground_truth.csv](./Evaluation/ground_truth.csv) dataset. This allowed us to assess the performance of both models while staying within the API constraints.
+Due to daily rate limits, we evaluated a subset of **200 queries** from the [ground_truth.csv](./evaluation/ground_truth.csv) dataset. This allowed us to assess the performance of both models while staying within the API constraints.
 

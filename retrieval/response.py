@@ -1,5 +1,5 @@
 import os
-import hybrid.search
+import retrieval.search
 from google import genai
 
 
@@ -11,28 +11,25 @@ def get_response(question: str, model: str = 'gemini-2.5-flash-lite'):
 
     input_prompt = """
 
-        You will be given:
-        1. A question.  
-        2. Five context paragraphs (labeled context1 through context5).  
+        You are given:
+        1. A question.
+        2. Two context passages (context1 and context2).
 
-        Your task:  
-        - Answer the question **using only the information provided in the contexts**.  
-        - Do not use outside knowledge.  
-        - If the contexts do not contain enough information to fully answer, say so explicitly.  
-        - Make the answer clear, concise, and directly related to the question.  
+        Your task:
+        - Answer the question using only the given contexts.
+        - If both contexts provide relevant information, combine them into a complete answer.
+        - If the contexts are insufficient, explicitly state that the answer cannot be fully determined.
+        - Make the response well-structured, clear, and directly connected to the question.
 
-        Input format:  
+        Input format:
 
-        question: {question}  
-        context1: {context1}  
-        context2: {context2}  
-        context3: {context3}  
-        context4: {context4}  
-        context5: {context5}  
+        question: {question}
+        context1: {context1}
+        context2: {context2}
 
     """.strip()
 
-    context_docs = hybrid.search.rrf_search(question=question, collection_name='hybrid-search-collection')
+    context_docs = retrieval.search.rrf_search(question=question, collection_name='hybrid-search-collection')
     prompt = input_prompt.format(**context_docs)
 
     response = google_client.models.generate_content(

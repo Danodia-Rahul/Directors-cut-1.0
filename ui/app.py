@@ -2,7 +2,7 @@ import sys
 import os
 
 import streamlit as st
-import hybrid.response
+import retrieval.response
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -33,7 +33,7 @@ for index, block in enumerate(st.session_state.blocks):
         if not block['text']:
             block['output'] = "Please add a query..."
         else:
-            block['output'] = hybrid.response.get_response(question=block['text'])
+            block['output'] = retrieval.response.get_response(question=block['text'])
             st.session_state.user_interacted = True
         
     st.write(block['output'])
