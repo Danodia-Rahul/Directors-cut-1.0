@@ -6,7 +6,7 @@ def generate_id(record):
     text = f"{record['type']} | {record['term']}"
     return hashlib.md5(text.encode()).hexdigest()
 
-with open('Data/raw_data.json', 'r', encoding='utf-8') as f_in:
+with open('data/raw_data.json', 'r', encoding='utf-8') as f_in:
     documents = json.load(f_in)
 
 processed_data = []

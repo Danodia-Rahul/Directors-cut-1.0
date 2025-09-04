@@ -10,16 +10,16 @@ Essential film making techniques, from shots to editing, all in one place.
 <h2>📁 Project Structure</h2>
 <pre>
 Directors-cut-1.0/
-├── Data/
+├── data/
 │     ├── data.json
 │     ├── generate_ids.py
 │     └── raw_data.json
-├── Evaluation/
+├── evaluation/
 │     ├── ground_truth.ipynb
 │     ├── ground_truth.csv
 │     ├── LLM_as_judge.ipynb
 │     └── retrieval_evaluation.ipynb
-├── hybrid/
+├── retrieval/
 │     ├── __init__.py
 │     ├── response.py
 │     └── search.py

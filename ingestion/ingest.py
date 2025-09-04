@@ -6,7 +6,7 @@ from typing import List
 from qdrant_client import QdrantClient, models
 from fastembed import TextEmbedding, SparseTextEmbedding
 
-with open('Data/data.json', 'rt') as f_in:
+with open('data/data.json', 'rt') as f_in:
     documents = json.load(f_in)
 
 
