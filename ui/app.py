@@ -1,10 +1,11 @@
 import sys
 import os
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import streamlit as st
 import retrieval.response
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 st.markdown("<h2 style = 'text-align: center;'>Director's Cut 1.0</h2>",

@@ -39,7 +39,7 @@ def build_collection(name: str, vector_config: dict = None, sparse_vector_config
             sparse_vectors_config = sparse_vector_config
         )
 
-        print(f"Qdrant collection '{name}' created.")
+        print(f"✅ Qdrant collection '{name}' created.")
 
     except Exception as e:
         print(f"Failed to create collection '{name}': {e}")
@@ -84,7 +84,7 @@ def populate_collection(name: str, models_names: dict, documents: List[dict]):
             points=points
         )
 
-        print(f"Successfully populated collection '{name}' with {len(points)} records.")
+        print(f"✅ Successfully populated collection '{name}' with {len(points)} records.")
 
     except Exception as e:
         print(f"An error occurred: {e}")
