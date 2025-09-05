@@ -17,7 +17,7 @@ Directors-cut-1.0/
 ├── evaluation/
 │     ├── ground_truth.ipynb
 │     ├── ground_truth.csv
-│     ├── LLM_as_judge.ipynb
+│     ├── llm_as_judge.ipynb
 │     └── retrieval_evaluation.ipynb
 ├── retrieval/
 │     ├── __init__.py
@@ -133,4 +133,20 @@ For our use case, we selected **RRF Search** as it achieved the highest recall (
 For the retrieval-augmented generation (RAG) evaluation, we used a large language model (LLM) as the judge. Specifically, we tested the generated responses from two models: **Gemini 2.5 Flash** and **Gemini 2.5 Flash Lite**.  
 
 Due to daily rate limits, we evaluated a subset of **200 queries** from the [ground_truth.csv](./evaluation/ground_truth.csv) dataset. This allowed us to assess the performance of both models while staying within the API constraints.
+
+#### Results
+
+        | Model                | Relevant | Partially Relevant | Not Relevant |
+        |----------------------|----------|--------------------|--------------|
+        | Gemini 2.5 Flash     | 174      | 18                 | 8            |
+        | Flash Lite           | 176      | 14                 | 10           |
+
+#### Interpretation
+- **Gemini 2.5 Flash** produces fewer *non-relevant* responses, reducing the risk of irrelevant retrievals.  
+- It also maintains a slightly higher number of *partially relevant* cases, which still provide some useful context.  
+- **Flash Lite** is stricter, shifting some cases into either *relevant* or *not relevant*, but at the cost of more outright irrelevant results.  
+
+#### Conclusion
+Given these observations, we selected **Gemini 2.5 Flash** for generating responses, as it provides a better balance between minimizing irrelevant outputs and preserving partially useful information.
+
 
