@@ -1,7 +1,7 @@
 # Directors-cut-1.0
 Essential film making techniques, from shots to editing, all in one place.
 
-### Problem Description
+## Problem Description
 
 <p>🎬 Filmmaking has tons of terms for shots, camera moves, editing, and lighting—but info is scattered everywhere!</p>
 
@@ -19,33 +19,26 @@ Directors-cut-1.0/
 │     ├── ground_truth.csv
 │     ├── llm_as_judge.ipynb
 │     └── retrieval_evaluation.ipynb
-├── retrieval/
-│     ├── __init__.py
-│     ├── response.py
-│     └── search.py
 ├── ingestion/
 │     ├── __init__.py
 │     └── ingest.py
+├── retrieval/
+│     ├── __init__.py
+│     ├── query_rewrite.py   
+│     ├── response.py
+│     └── search.py
 ├── ui/
 │     └── app.py
+├── .env.example
 ├── .gitignore
+├── docker-compose.yaml
 ├── Dockerfile
-├── environment.yml
-└── README.md
+├── environment.yaml
+├── README.md
+└── setup.sh
 </pre>
-
-
-### Data
-
-The dataset used in this project was collected through **web scraping** from multiple online sources, including articles from *StudioBinder*, *MetFilm School*, and *Art Department*.  
-
-Since each source followed a different structure and formatting style, a single generic scraper could not be applied. Instead, custom scraping routines were written for each site to extract the relevant information.  
-
-**Note:** The scraping code itself is not included in this repository. The primary reason is that the scripts were highly tailored to the unique HTML structures of the individual websites, and therefore are not reusable in a general form. Moreover, the focus of this project is on the analysis and application of the curated dataset, not on the scraping process itself.  
-
-All data used here is strictly for **academic and research purposes**, and care was taken to respect the **terms of service** and copyright of the original websites.
                                         
-### 🚀 Getting Started
+## 🚀 Getting Started
 
 This guide provides two options for setting up and running this project.
 
@@ -59,64 +52,93 @@ cd project1
 ```
 ----
 
-### 💻 Option A: Local Setup with Conda
+### 💻 Option A: Local Setup with Conda  
+Recommended setup (this project was built with **Conda**).  
 
-This is the recommended setup as the project was developed using **Conda**.
+1. **Start Qdrant** (in Docker):  
+   ```bash
+    docker pull qdrant/qdrant
+    docker run -p 6333:6333 -p 6334:6334 \
+       -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
+       qdrant/qdrant
 
-1.  **Install Miniconda** from this link: [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
+2. **Install Miniconda** → [Download here](https://docs.conda.io/en/latest/miniconda.html)
 
-2.  **Create and activate the environment:**
+3. **Create & activate environment:**
 
-    ```bash
-    conda env create -f environment.yml
-    conda activate project
-    ```
+   ```bash
+   conda env create -f environment.yml
+   conda activate project
+   ```
 
-3. **create Qdrant knowledge base:**
-    ```bash
-    python -m ingestion.ingest
-    ```
+4. **Ingest data into Qdrant:**
 
-4.  **Run the Streamlit app:**
+   ```bash
+   python -m ingestion.ingest
+   ```
 
-    ```bash
-    streamlit run ui/app.py
-    ```
+5. **Launch the Streamlit app:**
 
------
+   ```bash
+   streamlit run ui/app.py
+   ```
+
+Everything’s ready! You can access:  
+
+- **Qdrant Dashboard** → [http://localhost:6333/dashboard](http://localhost:6333/dashboard)  
+- **Streamlit App** → [http://localhost:8501](http://localhost:8501)  
+
+
 
 ### 🐳 Option B: Containerized Setup with Docker
 
-You can also use **Docker** for a self-contained environment.
+You can also use **Docker** for a self-contained environment. Make sure no other container is using port **6333** and **8501**.
 
-1.  **Build the Docker image:**
+1. **Build the Docker image:**
+   ```bash
+   docker compose build
+   ```
 
-    ```bash
-    docker build -t project .
-    ```
+2. **Run the app in Docker:**
 
-2.  **Run the app in Docker:**
+   ```bash
+   docker compose up
+   ```
 
-    ```bash
-    docker run -p 8501:8501 project
-    ```
-
-3.  **Access the app** by navigating to:
-
-    ```
-    http://localhost:8501
-    ```
 ---
-### Evaluation
+Once running, you can access:
 
-#### Retrieval Evaluation
----
+* **Qdrant Dashboard** → [http://localhost:6333/dashboard](http://localhost:6333/dashboard)
+* **Streamlit App** → [http://localhost:8501](http://localhost:8501)
+
+## Data
+
+The dataset was curated by scraping filmmaking resources such as *StudioBinder*, *MetFilm School*, and *Art Department*.  
+Each source had a unique structure, so we wrote **custom scrapers** for each site instead of a single generic one.  
+
+**Note:**  
+- Scraping scripts are **not included** in this repo (they were highly tailored and not reusable).  
+- The dataset is intended **only for academic and research purposes**.  
+- Original site **terms of service** and copyright were respected.  
+
+**Format:**  
+Every record follows a simple schema →  
+`type | term | definition | extra`  
+
+This makes it easy to index, search, and evaluate across different retrieval methods.
+
+
+## Evaluation
+
+### Retrieval Evaluation
 For retrieval evaluation, we experimented with several approaches:
 
 - **Keyword Search:** Simple matching based on keywords.  
 - **Semantic Search:** Uses embeddings to find semantically similar items.  
 - **Multi-Stage Search:** Combines keyword and semantic search in multiple stages.  
 - **Re-Ranking Fusion (RRF) Search:** Combines multiple retrieval strategies and re-ranks the results.
+
+#### Results
 
         | Method               | MRR    | Hit Rate |
         |----------------------|--------|----------|
@@ -127,8 +149,7 @@ For retrieval evaluation, we experimented with several approaches:
 
 For our use case, we selected **RRF Search** as it achieved the highest recall (Hit Rate) and precision (MRR).
 
-#### RAG Evaluation
-----
+### RAG Evaluation
 
 For the retrieval-augmented generation (RAG) evaluation, we used a large language model (LLM) as the judge. Specifically, we tested the generated responses from two models: **Gemini 2.5 Flash** and **Gemini 2.5 Flash Lite**.  
 
@@ -148,5 +169,6 @@ Due to daily rate limits, we evaluated a subset of **200 queries** from the [gro
 
 #### Conclusion
 Given these observations, we selected **Gemini 2.5 Flash** for generating responses, as it provides a better balance between minimizing irrelevant outputs and preserving partially useful information.
+
 
 

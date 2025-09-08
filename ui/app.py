@@ -5,6 +5,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import streamlit as st
 import retrieval.response
+import retrieval.query_rewrite
 
 
 
@@ -34,7 +35,8 @@ for index, block in enumerate(st.session_state.blocks):
         if not block['text']:
             block['output'] = "Please add a query..."
         else:
-            block['output'] = retrieval.response.get_response(question=block['text'])
+            modified_query = retrieval.query_rewrite.rewrite_query(text_input=block['text'])
+            block['output'] = retrieval.response.get_response(question=modified_query)
             st.session_state.user_interacted = True
         
     st.write(block['output'])

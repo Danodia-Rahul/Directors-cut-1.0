@@ -1,3 +1,4 @@
+import os
 import json
 import collections
 import pandas as pd
@@ -9,8 +10,8 @@ from fastembed import TextEmbedding, SparseTextEmbedding
 with open('data/data.json', 'rt') as f_in:
     documents = json.load(f_in)
 
-
-client = QdrantClient("http://localhost:6333")
+qdrant_host = os.environ.get("QDRANT_HOST", "localhost")
+client = QdrantClient(f"http://{qdrant_host}:6333")
 
 def collection_exists(collection_name: str) -> bool:
 

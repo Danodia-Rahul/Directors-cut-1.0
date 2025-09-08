@@ -4,7 +4,6 @@ from google import genai
 
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
-
 google_client = genai.Client(api_key=GOOGLE_API_KEY)
 
 def get_response(question: str, model: str = 'gemini-2.5-flash'):

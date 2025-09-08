@@ -12,6 +12,8 @@ full_score.md
 #qdrant
 qdrant_storage
 
+.env
+
 # Distribution / packaging
 .Python
 build/
