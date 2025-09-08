@@ -47,8 +47,8 @@ This guide provides two options for setting up and running this project.
 ### Clone git repository
 
 ```bash
-git clone https://github.com/user/project1.git
-cd project1
+git clone https://github.com/Danodia-Rahul/Directors-cut-1.0.git
+cd Directors-cut-1.0
 ```
 ----
 

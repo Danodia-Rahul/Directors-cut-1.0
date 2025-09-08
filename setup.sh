@@ -9,6 +9,10 @@ echo "Qdrant is up!"
 
 cd /app
 
+echo "starting ingestion to qdrant collection"
+
 conda run -n project python -m ingestion.ingest || true
+
+echo "ingestion completed"
 
 exec conda run -n project streamlit run ui/app.py --server.port=8501 --server.address=0.0.0.0
