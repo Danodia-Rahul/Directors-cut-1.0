@@ -170,5 +170,10 @@ Due to daily rate limits, we evaluated a subset of **200 queries** from the [gro
 #### Conclusion
 Given these observations, we selected **Gemini 2.5 Flash** for generating responses, as it provides a better balance between minimizing irrelevant outputs and preserving partially useful information.
 
+## Notebooks
 
+All notebooks in the `evaluation/` folder were built and tested in **Google Colab**.
+They rely on Colab’s **secrets storage** to securely access API keys (e.g., Google GenAI).
+
+If you plan to run them in Colab, make sure your **Google GenAI API key** is saved in *Colab secrets*.
 
