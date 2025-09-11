@@ -16,7 +16,8 @@ st.markdown("<br><br><br>", unsafe_allow_html=True)
 if 'blocks' not in st.session_state:
     st.session_state.blocks = [{
                                 'text': "", 
-                                'output': ""
+                                'output': "",
+                                'feedback': ""
                                 }]
 
 if 'user_interacted' not in st.session_state:
@@ -67,6 +68,13 @@ for index, block in enumerate(st.session_state.blocks):
         """,
         unsafe_allow_html=True
     )
+
+    if block['output']:
+        sentiment_mapping = [":material/thumb_down:", ":material/thumb_up:"]
+        selected = st.feedback("thumbs", key=f'feedback_{index}')
+        if selected is not None:
+            st.markdown(f"You selected: {sentiment_mapping[selected]}")
+            block['feedback'] = sentiment_mapping[selected]
 
     st.markdown("<br>", unsafe_allow_html=True)
 
