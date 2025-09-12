@@ -52,6 +52,10 @@ cd Directors-cut-1.0
 ```
 ----
 
+**Important:** Before running the application, create a `.env` file in the project root.
+You can use the provided `.env.example` as a template and replace the placeholder values with your own (for example, your `GOOGLE_API_KEY`).
+
+
 ### 💻 Option A: Local Setup with Conda  
 Recommended setup (this project was built with **Conda**).  
 

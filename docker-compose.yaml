@@ -15,7 +15,7 @@ services:
     ports:
       - "8501:8501"
     environment:
-      - QDRANT_HOST=${QDRANT_HOST}
+      - QDRANT_HOST=qdrant
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
 
 volumes:
