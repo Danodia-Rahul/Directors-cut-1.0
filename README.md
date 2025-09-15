@@ -82,7 +82,7 @@ Recommended setup (this project was built with **Conda**).
 3. **Create & activate environment:**
 
    ```bash
-   conda env create -f environment.yml
+   conda env create -f environment.yaml
    conda activate project
    ```
 
