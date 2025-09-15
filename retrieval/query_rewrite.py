@@ -1,6 +1,6 @@
 from retrieval.response import google_client
 
-def rewrite_query(text_input: str) -> str:
+def rewrite_query(text_input: str):
     prompt = """
 
     You will be given an input text string that may contain spelling mistakes, grammatical errors, or awkward sentence structure. 
@@ -20,4 +20,4 @@ def rewrite_query(text_input: str) -> str:
         contents = prompt.format(text=text_input)
     )
 
-    return modified_query.text.strip()
+    return modified_query

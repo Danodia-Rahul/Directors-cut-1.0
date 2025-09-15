@@ -40,4 +40,4 @@ def get_response(question: str, model: str = 'gemini-2.5-flash'):
         contents = prompt
     )
 
-    return response.text
+    return response

@@ -48,6 +48,7 @@ dependencies:
     - packaging==25.0
     - pandas==2.3.2
     - pillow==11.3.0
+    - plotly==6.3.0
     - portalocker==3.2.0
     - protobuf==6.32.0
     - py_rust_stemmers==0.1.5

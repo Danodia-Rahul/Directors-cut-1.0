@@ -37,6 +37,17 @@ Directors-cut-1.0/
 ├── README.md
 └── setup.sh
 </pre>
+
+## Preview
+
+This is what the overall project looks like:
+
+**💬 Chat Interface**  
+![Chat Interface](./images/chat_interface.png)
+
+**📊 Dashboard View**  
+![Dashboard Interface](./images/dashboard_page.png)
+
                                         
 ## 🚀 Getting Started
 
@@ -62,7 +73,7 @@ Recommended setup (this project was built with **Conda**).
 1. **Start Qdrant** (in Docker):  
    ```bash
     docker pull qdrant/qdrant
-    docker run -p 6333:6333 -p 6334:6334 \
+    docker run -d -p 6333:6333 -p 6334:6334 \
        -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
        qdrant/qdrant
 
